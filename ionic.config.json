@@ -1,0 +1,7 @@
+{
+  "name": "blackfincorpApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
