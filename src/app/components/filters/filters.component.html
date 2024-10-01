@@ -1,0 +1,157 @@
+<ion-toolbar>
+  <ion-buttons slot="primary">
+    <ion-button (click)="showFilter = !showFilter">
+      <ion-icon name="filter"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  <ion-title>Consulta de siniestros</ion-title>
+</ion-toolbar>
+<ion-card *ngIf="showFilter">
+  <ion-grid fixed>
+    <form (ngSubmit)="search( fSearch )" #fSearch="ngForm">
+
+      <ion-row>
+        <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size-xs="12" class="ion-text-sm-justify">
+          <ion-item>
+            <!-- <ion-label>Email</ion-label> -->
+            <ion-input 
+              aria-label="Primary input" color="primary" 
+              label="Referencia"
+              labelPlacement="floating"
+              placeholder="" 
+              inp 
+              [(ngModel)]="filterListaTest.referencia_ent"
+              name = "referencia_ent"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size-xs="12" class="ion-text-sm-justify">
+          <ion-item>
+            <ion-input 
+              label="Posición"
+              labelPlacement="floating" 
+              placeholder="" 
+              inp
+              [(ngModel)]="filterListaTest.posicion_ent"
+              name = "posicion_ent"
+              ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="ion-list-newbackground">
+        <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size-xs="12">
+          <ion-item>
+            <ion-label>Siniestro desde:</ion-label>
+            <ion-datetime-button datetime="datetime_desde"></ion-datetime-button>
+            <ion-modal [keepContentsMounted]="true">
+              <ng-template>
+                <ion-datetime 
+                  id="datetime_desde" 
+                  locale="es-ES" 
+                  presentation="date"
+                  
+                  [(ngModel)]="filterListaTest.fecha_siniestro_desde"
+                  name = "fecha_siniestro_desde"
+                  ></ion-datetime>
+              </ng-template>
+            </ion-modal>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size-xs="12">
+          <ion-item>
+            <ion-label>Siniestro hasta:</ion-label>
+            <ion-datetime-button datetime="datetime_hasta"></ion-datetime-button>
+            <ion-modal [keepContentsMounted]="true">
+              <ng-template>
+                <ion-datetime 
+                id="datetime_hasta" 
+                locale="es-ES" 
+                presentation="date"
+                
+                [(ngModel)]="filterListaTest.fecha_siniestro_hasta"
+                name = "fecha_siniestro_hasta"
+                ></ion-datetime>
+              </ng-template>
+            </ion-modal>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size-xs="12" class="ion-text-sm-justify">
+          <ion-item>
+            <ion-input 
+            label="Matricula entrada" 
+            labelPlacement="floating" 
+            placeholder="" 
+            inp
+            [(ngModel)]="filterListaTest.matricula_ent"
+            name = "matricula_ent"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size-xs="12" class="ion-text-sm-justify">
+          <ion-item>
+            <ion-input 
+              label="Matricula Contr:" 
+              labelPlacement="floating" 
+              placeholder="" 
+              inp
+              [(ngModel)]="filterListaTest.matricula_con"
+              name = "matricula_con"
+              ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size-xs="12" class="ion-text-sm-justify">
+          <ion-item>
+            <ion-select 
+                placeholder="Seleccione &nbsp;" 
+                class="select-text" 
+                interface="popover"
+                [(ngModel)]="filterListaTest.cod_entidad_con"
+                name = "cod_entidad_con"
+                
+              >
+              <div slot="label" class="label-select">Código entidad:</div>
+              <ion-select-option >Ninguno</ion-select-option>
+              <ion-select-option value="3">Todos</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size-xs="12" class="ion-text-sm-justify">
+          <ion-item>
+            <ion-select 
+              placeholder="Seleccione &nbsp;" 
+              class="select-text" 
+              interface="popover"
+              [(ngModel)]="filterListaTest.entidad_con" 
+              name = "entidad_con"
+                       
+            >
+              <div slot="label" class="label-select">Entidad:</div>
+              <ion-select-option >Ninguno</ion-select-option>
+              <ion-select-option value="3">Todos</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12" class="ion-text-center ">
+          <ion-button class="ion-padding-horizontal" shape="round" fill="outline" type="submit">
+            <ion-icon name="search"></ion-icon>
+          </ion-button>
+          <ion-button class="ion-padding-horizontal" shape="round" fill="outline" type="button" (click)="filterRefresh()" color="danger">
+            <ion-icon name="close"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+    </form>
+
+  </ion-grid>
+</ion-card>

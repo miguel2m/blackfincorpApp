@@ -1,0 +1,22 @@
+<ion-card>
+  <ion-card-subtitle class="ion-margin">
+    <span class="text-primary"> {{ item.entidad_con | uppercase  }} </span>
+  </ion-card-subtitle>
+
+  <ion-card-title class="ion-padding-horizontal ion-margin-bottom">
+    <span class="article-source-name">CONVENIO {{ item.convenio | uppercase  }}</span>
+  </ion-card-title>
+
+
+  <ion-img
+    src="assets/Mapfre_logo.svg"
+  ></ion-img>
+
+  <ion-card-content>
+    <p>Tramitador {{ item.tramitador }}</p>
+    <p>Fecha de siniestro: {{ item.fecha_siniestro }}</p>
+    <p>Matricula ent: {{ item.matricula_ent }}</p>
+    <p>Matricula con: {{ item.matricula_con }}</p>
+  </ion-card-content>
+
+</ion-card>
