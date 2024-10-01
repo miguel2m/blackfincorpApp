@@ -11,9 +11,11 @@ export class FilterListaTestPipe implements PipeTransform {
       return arreglo;
     }
 
-    if ( texto === 'clear' ) {
+    if ( texto === 'clear') {
       return arreglo;
     }
+
+    
 
     if ( !arreglo ) {
       return arreglo;

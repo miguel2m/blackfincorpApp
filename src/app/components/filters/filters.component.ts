@@ -70,6 +70,10 @@ export class FiltersComponent  implements OnInit {
       this.onSearchListaTest.emit("clear");
     }
   }
+  onSearchCancel( event: any ) {
+    this.onNewListaTest.emit({});
+  }
+  
 
   async generateItems(desde:string,hasta:string) {
     this.data = await this.blackfinService.getCotizadorAsync(desde,hasta);
