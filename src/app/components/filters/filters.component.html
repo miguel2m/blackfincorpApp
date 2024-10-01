@@ -1,11 +1,23 @@
-<ion-toolbar>
-  <ion-buttons slot="primary">
-    <ion-button (click)="showFilter = !showFilter">
-      <ion-icon name="filter"></ion-icon>
-    </ion-button>
-  </ion-buttons>
-  <ion-title>Consulta de siniestros</ion-title>
-</ion-toolbar>
+<ion-header mode="ios" class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="primary">
+      <ion-button (click)="showFilter = !showFilter">
+        <ion-icon name="filter"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <!-- <ion-title>Consulta de siniestros</ion-title> -->
+    <ion-searchbar 
+      show-clear-button="always"
+      value=""
+      inputmode="text"
+      (ionChange)="onSearchChange( $event )"
+      (ionClear)="onSearchClear( $event )"
+      ></ion-searchbar>
+      <!-- (ionClear)="onSearchClear( $event )" -->
+  </ion-toolbar>
+</ion-header>
+
+
 <ion-card *ngIf="showFilter">
   <ion-grid fixed>
     <form (ngSubmit)="search( fSearch )" #fSearch="ngForm">

@@ -4,7 +4,7 @@
 
 <ion-content [fullscreen]="true">
 
-  <app-filters (onNewListaTest)="onSearchListaTest($event)"></app-filters>
+  <app-filters (onNewListaTest)="onSearchListaTest($event)" (onSearchListaTest)="onSearchListaTestFilter($event)"></app-filters>
 
-  <app-items [items]="listaTest" [msgError]="msgError"></app-items>
+  <app-items [items]="data.listaTest||[]" [msgError]="msgError" [textoFilter]="searchText"></app-items>
 </ion-content>

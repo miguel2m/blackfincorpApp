@@ -19,25 +19,20 @@ export class Tab1Page implements OnInit{
   constructor(private blackfinService: BlackfinService) {}
 
   ngOnInit(): void {
-    //throw new Error('Method not implemented.');
-    
     this.generateItems()
   }
 
-  // onIonInfinite(ev) {
-  //   this.generateItems();
-  //   setTimeout(() => {
-  //     (ev as InfiniteScrollCustomEvent).target.complete();
-  //   }, 500);
-  // }
+  private async generateItems() {
+    this.data = await this.blackfinService.getCotizadorAsync("2024-08-01T00:43:11.283Z","2024-10-01T15:43:11.283Z");
+    this.listaTest =this.data.listaTest||[];
+    //this.onNewListaTest.emit({...this.data});
 
-  private generateItems() {
-    this.blackfinService.getCotizador("2024-07-30T00:43:11.283Z","2024-07-30T15:43:11.283Z").subscribe( (resp:RespBlackfin) => {
-      this.data=resp
-      if(this.data.listaTest)
-        this.listaTest =this.data.listaTest||[];
-      this.msgError = this.data.mensaje||"";
-    });
+    // this.blackfinService.getCotizador("2024-07-30T00:43:11.283Z","2024-07-30T15:43:11.283Z").subscribe( (resp:RespBlackfin) => {
+    //   this.data=resp
+    //   if(this.data.listaTest)
+    //     this.listaTest =this.data.listaTest||[];
+    //   this.msgError = this.data.mensaje||"";
+    // });
   }
 
 }

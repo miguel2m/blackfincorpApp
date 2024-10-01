@@ -1,6 +1,6 @@
 <ion-grid fixed>
-  <ion-row *ngIf="items">
-    <ion-col *ngFor="let item of items; let i = index" size="12" size-lg="3" size-md="4" size-sm="6" size-xs="12">
+  <ion-row >
+    <ion-col *ngFor="let item of items | FilterListaTest:textoFilter:'entidad_con' ; let i = index " size="12" size-lg="3" size-md="4" size-sm="6" size-xs="12">
 
       <app-item [item]="item" [index]="i + 1"></app-item>
 

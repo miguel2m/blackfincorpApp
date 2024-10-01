@@ -11,7 +11,7 @@ import { BlackfinService } from 'src/app/services/blackfin.service';
 export class FiltersComponent  implements OnInit {
   currentdate = new Date(); 
   data: RespBlackfin = {};
-  listaTests: ListaTest[] =[];
+  msgError: string = "";
   filterListaTest: FilterListaTest ={
     referencia_ent:"",
     posicion_ent:"",
@@ -24,10 +24,15 @@ export class FiltersComponent  implements OnInit {
   }
   showFilter: boolean = false;
 
-  @Output()
-  public onNewListaTest: EventEmitter<FilterListaTest> = new EventEmitter();
+  textoBuscar: string = '';
 
-  constructor() {}
+
+  @Output()
+  public onNewListaTest: EventEmitter<RespBlackfin> = new EventEmitter();
+  @Output()
+  public onSearchListaTest: EventEmitter<string> = new EventEmitter();
+
+  constructor(private blackfinService: BlackfinService) {}
 
   ngOnInit() {
     this.filterRefresh();
@@ -48,9 +53,28 @@ export class FiltersComponent  implements OnInit {
   search( fSearch: NgForm ) {
 
     if ( fSearch.invalid ) { return; }
-    this.onNewListaTest.emit({...this.filterListaTest});
-
+    this.generateItems(this.filterListaTest.fecha_siniestro_desde,this.filterListaTest.fecha_siniestro_hasta);
     this.filterRefresh();
   }
+
+
+  onSearchChange( event: any ) {
+    this.textoBuscar = event.detail.value;
+    if(this.textoBuscar !== ''){
+      this.onSearchListaTest.emit(this.textoBuscar);
+    }
+  }
+
+  onSearchClear( event: any ) {
+    if(this.textoBuscar !== ''){
+      this.onSearchListaTest.emit("clear");
+    }
+  }
+
+  async generateItems(desde:string,hasta:string) {
+    this.data = await this.blackfinService.getCotizadorAsync(desde,hasta);
+    this.onNewListaTest.emit({...this.data});
+  }
+
 
 }

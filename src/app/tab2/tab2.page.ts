@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FilterListaTest, ListaTest, RespBlackfin } from '../interfaces/interfaces';
+import { RespBlackfin } from '../interfaces/interfaces';
 import { BlackfinService } from '../services/blackfin.service';
 
 @Component({
@@ -9,25 +9,22 @@ import { BlackfinService } from '../services/blackfin.service';
 })
 export class Tab2Page {
 
-  data: RespBlackfin = {};
-  listaTest: ListaTest[] =[];
-
+  data: RespBlackfin = {
+    codigoError:'',
+    mensaje: '',
+    listaTest: []
+  };
+  searchText: string ="";
   msgError: string = "";
 
   constructor(private blackfinService: BlackfinService) {}
 
-  onSearchListaTest(filterListaTest: FilterListaTest):void {
-    console.log(filterListaTest);
-    this.generateItems(filterListaTest.fecha_siniestro_desde,filterListaTest.fecha_siniestro_hasta)
+  onSearchListaTest(data: RespBlackfin):void {
+    this.data=data;
+    this.msgError=data.mensaje||'';
   }
-
+  onSearchListaTestFilter(value: string):void {  
+      this.searchText=value;
+  }
   
-  private generateItems(desde:string,hasta:string) {
-    this.blackfinService.getCotizador(desde,hasta).subscribe( (resp:RespBlackfin) => {
-      this.data=resp
-      this.listaTest =this.data.listaTest||[];
-      this.msgError = this.data.mensaje||"";
-    });
-  }
-
 }

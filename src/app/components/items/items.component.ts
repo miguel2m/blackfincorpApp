@@ -10,6 +10,7 @@ export class ItemsComponent  implements OnInit {
 
   @Input() items: ListaTest[] = [];
   @Input() msgError: string = "";
+  @Input() textoFilter: string = "";
 
   constructor() { }
 

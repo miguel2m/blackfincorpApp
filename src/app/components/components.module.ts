@@ -6,6 +6,7 @@ import { ItemsComponent } from './items/items.component';
 import { FiltersComponent } from './filters/filters.component';
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
+import { PipesModule } from '../pipes/pipes.module';
 
 
 
@@ -20,6 +21,7 @@ import { HeaderComponent } from './header/header.component';
     CommonModule,
     IonicModule,
     FormsModule,
+    PipesModule
 
   ],
   exports: [
